@@ -1,0 +1,29 @@
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+.month {
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+#calendar {
+    margin: 25px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr) ;
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap:1px;
+    height: 100%;
+}
+.day {
+    height: 100px;
+}
+.week {
+    font-size: larger;
+    display: grid;
+    text-align: center;
+    word-spacing: 75px;
+}
