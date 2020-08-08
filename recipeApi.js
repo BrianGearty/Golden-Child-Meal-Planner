@@ -1,14 +1,7 @@
-const apiKey = "762f0ea87e686d609160c3fd1d23050c";
-const appId = "116c2f71";
+const cardHolder = $("#test");
 
-var urlPath = "https://api.edamam.com/search?app_id=" + appId + "&app_key=" + apiKey;
-
-//main query parameter, from search bar
-var queryTerm = "chicken";
-
-//cooking time parameters
-var minTime = 0;
-var maxTime = 0;
+//added to in search
+var basePath = "https://api.edamam.com/search?app_id=116c2f71&app_key=762f0ea87e686d609160c3fd1d23050c";
 
 //balanced, high-protein, low-fat,  low-carb
 var dietType = "";
@@ -16,30 +9,56 @@ var dietType = "";
 //alcohol-free, peanut-free, sugar-conscious, tree-nut-free, vegan, vegetarian
 var allergyAndHealth = "";
 
-//the fucntion that will make the call
-//check to make sure the main query is set
-if(queryTerm){
-    //adds the query to the API url
-    urlPath += "&q=" + queryTerm;
+//called from the searchForRecipes function when it loops through the list of recipes
+function displaySearchedRecipe(name, ingredients, healthLabels, servings, recipeUrl, imageUrl){
+    //TODO write code to display recipes
+    var recipeHolder = $("<div>").addClass("recipe-search-card-holder");
+    var nameDisplay = $("<h2>").addClass("recipe-search-card-name").text(name);
+    //put ingredients into an ordered list
+    var ingredientsHolder = $("<ol>").addClass("recipe-search-card-ingredients-ol");
+    $.each(ingredients, function(i, index){
+        var currentIngredient = $("<li>").text(index);
+        $(ingredientsHolder).append(currentIngredient);
+    });
 
-    //see if min OR max cook time parameter has been set
-    if(minTime > 0 || maxTime > 0)
-    {
-        //checks if min AND max given, AND min is less than max
-        if(minTime > 0 && maxTime > 0 && minTime < maxTime)
-        {
-            urlPath += "&time=" + minTime + "-" + maxTime;
-        }
-        //if only min given. Checking this second means if min was greater than max, max will be ignored
-        else if(minTime > 0)
-        {
-            urlPath += "&time=" + minTime + "%2B";
-        }
-        //if only max is given
-        else if(maxTime > 0){
-            urlPath += "&time=" + maxTime;
-        }
+    var healthHolder = $("<ul>").addClass("recipe-search-card-health-ul");
+    var checkForHealthLabels = false;
+    //check to see if there's any health labels
+    if(healthLabels.length > 0){
+        checkForHealthLabels = true;
+        var healthTitle = $("<div>").addClass("recipe-search-card-health-ul-title").text("Health Label(s):")
+        $(healthHolder).append(healthTitle);
+        $.each(healthLabels, function(i, index){
+            var currentHealth = $("<li>").text(index);
+            $(healthHolder).append(currentHealth);
+        });
     }
+
+    var servingDisplay = $("<div>").addClass("recipe-search-card-servings").text("Serves " + servings);
+
+    var recipeButton = $("<a>").addClass("recipe-search-card-button").text("Click To Get Recipe")
+        .attr({"href": recipeUrl, "target": "_blank"});
+
+    var recipeImage = $("<img>").addClass("recipe-search-card-image").attr("src", imageUrl);
+
+    //check if there are any health labels
+    if(checkForHealthLabels){
+        $(recipeHolder).append(nameDisplay, recipeImage, ingredientsHolder, healthHolder, servingDisplay, recipeButton);
+    }
+    else
+    {
+        $(recipeHolder).append(nameDisplay, recipeImage, ingredientsHolder, servingDisplay, recipeButton);
+    }
+
+    $(cardHolder).append(recipeHolder);
+}
+
+//called to search for recipes using the api
+function searchForRecipes(mainIngredient){
+    //adds the query to the API url
+    var urlPath = basePath;
+    urlPath += "&q=" + mainIngredient;
+
     //add diet type if selected
     if(dietType){
         urlPath += "&diet=" + dietType;
@@ -52,6 +71,25 @@ if(queryTerm){
         url: urlPath,
         method: "GET"
     }).then(function(response){
-        console.log(response);
+        //clearn holder when new search is run
+        $(cardHolder).empty();
+        if(response.hits.length > 0){
+            //the up to 10 returned from search
+            var listOfRecipies = response.hits;
+    
+            //loop through the recipes
+            $.each(listOfRecipies, function(i, index){
+                var currentRecipe = index.recipe;
+                
+                displaySearchedRecipe(currentRecipe.label, currentRecipe.ingredientLines, currentRecipe.healthLabels,
+                    currentRecipe.yield, currentRecipe.url, currentRecipe.image);
+            });
+        }
+        else
+        {
+            //TODO create code for what to do when search comes up empty
+        }
     });
 }
+
+searchForRecipes("onion");
