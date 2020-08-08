@@ -1,15 +1,17 @@
-
+/* Header */
 h1 {
     text-align: center;
     margin-bottom: 25px;
     margin-top: 25px;
 }
+/* Current Month */
 .month {
     text-align: center;
     font-size: x-large;
     font-weight: bold;
     margin-bottom: 50px;
 }
+/* Calendar */
 #calendar {
     margin: 25px;
     display: grid;
@@ -18,12 +20,25 @@ h1 {
     grid-gap:1px;
     height: 100%;
 }
+/* Individual Days on Calendar */
 .day {
     height: 100px;
 }
+/* Names of Days at top of Calendar */
 .week {
     font-size: larger;
     display: grid;
     text-align: center;
     word-spacing: 75px;
+}
+/* Styling for Past, Present, Future */
+
+.past {
+    background-color: grey;
+}
+.present {
+    background-color: green;
+}
+.future {
+    background-color: burlywood;
 }

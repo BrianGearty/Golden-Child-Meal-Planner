@@ -6,6 +6,8 @@ $(document).ready(function(){
     var currentDay = 0;
     var hasReachedDay = false;
     var startOfMonth =moment().startOf('month').format('dddd');
+    var todayCurrentMonth = parseInt(moment().format('YYYYMMDD'));
+
 
 // Giving current month
     const now = moment().format('MMMM YYYY');
@@ -22,80 +24,49 @@ $(document).ready(function(){
     // creating days for current month
     for (day = 1; day <= moment().daysInMonth(); day++) {
         
-        $().addClass('row');
+        //$().addClass('row');
+        var newDay = $("<div>").addClass("day");
         
         // checking what day start of month is on and appending it properly to grid
         if (startOfMonth != daysOfWeek[currentDay] && hasReachedDay == false) {
             day--;
-            $(calendar).append(`<div class="day"></div>`)
+            $(newDay).addClass("past");
+            $(calendar).append(newDay);
             currentDay++;
         } else {
-            $(calendar).append(`<div class="day">${day}</div>`)
+            $(newDay).text(day);
+            $(calendar).append(newDay);
             hasReachedDay = true;
-        }
 
-        $('.day').css("border", "black 1px solid") 
-        
-    }
-    //
-    var today = moment().format('dddd');
-    
-    for (var i = 0; i < daysOfWeek.length; i++) {
+            var dateOnCalendar = parseInt(moment().date(day).format('YYYYMMDD'));
 
-        if (today <= daysOfWeek[i] ) {
-            $(daysOfWeek).addClass('past');
-            $('.past').css("background-color", "grey");
-            // console.log('.past');
+            if(dateOnCalendar < todayCurrentMonth){
+                $(newDay).addClass('past').removeClass("present future");
+            }
+            else if (dateOnCalendar == todayCurrentMonth){
+                $(newDay).addClass('present').removeClass("past future");
+            }
+            else
+            {
+                $(newDay).addClass('future').removeClass('past present');
+            }
 
-        } else if (today == daysOfWeek[i]) {
-            $(today).addClass('present');
-            $('.present').css("background-color", "red");
-            console.log('.present')
 
-        } else { 
-            $(daysOfWeek).addClass('future');
-            $('.future').css("background-color", "green")
             
         }
-        }
+// Dynamically adding borders to the Calendar Days
+        $('.day').css("border", "black 1px solid") 
         
+        
+    }
+    // Getting styling for Past, Present, Future
 
 
-
+// Click event for each individual Day
         $(document).on("click", ".day", function(){
             console.log($(this).text())
         })
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })
+
+
