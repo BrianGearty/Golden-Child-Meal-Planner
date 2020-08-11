@@ -2,7 +2,7 @@ const cardHolder = $("#recipe-card-holder");
 const mainIngredientInputField = $("#recipe-main-ingredient")
 const searchButton = $("#search-recipe-button")
 
-//need this shit to save, because APPARETLY chrome or the API or WHATEVER throws a TANTRUM when I try and use modules
+//const saveNewRecipe = require("./favoritesDataManager.js");
 
 //loads saved data of favorited recipes if found
 var favoritedRecipes = JSON.parse(localStorage.getItem("golden-child-Recipes"));
@@ -26,7 +26,7 @@ function addFavoritesButtonToCard(recipeName){
         var checkIfFavorite = false;
         //check if already favorite
         $.each(favoritedRecipes, function(i, index){
-            if(index.name = recipeName){
+            if(index.name == recipeName){
                 checkIfFavorite = true;
             }
         });
@@ -71,6 +71,7 @@ function addFavoritesButtonToCard(recipeName){
     
                 $(favText).text("One of your Favorites");
                 $(favImg).attr("src", "./icons/favorited.png");
+            }); 
         }
     //if no save data found, don't bother checking for favorites
     }else{

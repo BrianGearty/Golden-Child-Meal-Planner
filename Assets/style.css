@@ -1,15 +1,27 @@
-
-h1 {
-    text-align: center;
-    margin-bottom: 25px;
-    margin-top: 25px;
+Header
+.navbar {
+    border-bottom: black 2px inset !important;
+    background-color: rgb(237, 220, 125) !important;
 }
+.navbar-brand {
+    color:rgb(237, 220, 125) !important; 
+    font-family: 'Cinzel', serif;
+    font-size: xx-large;
+}
+.nav-link {
+    color:rgb(237, 220, 125) !important;
+    font-family: 'Cinzel', serif;
+}
+/* Current Month */
 .month {
     text-align: center;
     font-size: x-large;
     font-weight: bold;
     margin-bottom: 50px;
+    color: rgb(237, 220, 125);
+    font-family: 'Cinzel', serif;
 }
+/* Calendar */
 #calendar {
     margin: 25px;
     display: grid;
@@ -18,12 +30,85 @@ h1 {
     grid-gap:1px;
     height: 100%;
 }
+/* Individual Days on Calendar */
 .day {
     height: 100px;
 }
+/* Names of Days at top of Calendar */
 .week {
     font-size: larger;
     display: grid;
+    grid-template-rows: 1fr;
     text-align: center;
     word-spacing: 75px;
+    font-family: 'Cinzel', serif;
+    color: rgb(237, 220, 125);
+}
+/* Styling for Past, Present, Future */
+
+.past {
+    background-color: grey;
+}
+.present {
+    background-color: rgb(237, 220, 125);
+}
+.future {
+    background-color:green;
+}
+
+/* Cards on Index.html */
+
+.card {
+    margin: 50px;
+    margin-top: 50px;
+    border: rgb(237, 220, 125) 3px groove;
+    border-radius: 10px;
+    height: 85%;
+    width: 25%;
+    padding: 10px;
+    box-shadow: 5px;
+    background-color: rgb(237, 220, 125);
+    
+}
+
+
+.card-img-top {
+    height:40%;
+    width: 100%;
+    margin: auto;
+    margin-top: 5px;
+    padding: 5px;
+    border: black 5px inset;
+}
+.card-img-top-1 {
+    height:50%;
+    width: 100%;
+    margin: auto;
+    margin-top: 5px;
+    padding: 5px;
+    border: black 5px inset;
+}
+
+.card-title {
+    text-align: center;
+    font-size: large;
+    font-family: 'Cinzel', serif;
+    color:black;
+}
+.card-body {
+    font-family: 'Rancho', cursive;
+    font-size: x-large;
+}
+
+.index {
+    background-image: url('/Users/briangearty/Golden-Child-Meal-Planner/Assets/blackngold.jpg');
+    background-size: auto;
+}
+
+.footer {
+    text-align: center;
+    font-size: x-large;
+    font-family: 'Cinzel', serif;
+    color: rgb(237, 220, 125);
+
 }
