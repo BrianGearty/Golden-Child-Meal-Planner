@@ -1,16 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing Area</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Rancho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./Assets/style.css" />
+    <title>Golden Child Meal Planner - Home</title>
 </head>
-<body>
-    <div id="test"></div>
+<body class='index'>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light nav">
+    <a class="navbar-brand" >Golden Child Meal Planner</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Search Recipes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Calendar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Favorite Recipes</a>
+        </li>
+        </ul>
+    </div>
+    </nav>
+    <!-- Cards -->
+    <div class="container">
+    <div class="row">
+    <div class="card-deck">
+        <div class="card">
+        <img class="card-img-top" src="./Assets/searchrecipe.jpg" alt="People cheers-ing around a dinner table.">
+        <div class="card-body">
+            <h5 class="card-title">Search Your Favorite Recipes!</h5>
+            <p class="card-text">Finding time to create your own recipes and planning them is tough. We've got you covered when it comes to finding the perfect meals for you and your family! Someone has food allergies? No problem! Someone doesn't like certain foods? No problem! Our databases can help bring you amazing home cooked meals created by world-reknown chefs from all different cuisines.</p>
+            
+        </div>
+        </div>
+        <div class="card">
+        <img class="card-img-top-1" src="./Assets/planmeals.jpg" alt="Mother walking to the car with her children and groceries.">
+        <div class="card-body">
+            <h5 class="card-title">Plan Your Meals On the Go!</h5>
+            <p class="card-text">Life on the go can be hectic. Are you constantly worrying about who needs to be dropped off at soccer practice and picked up at their after school tutor session? After you've found your favorite recipes use our intergrated calendar to help plan out your meals and favorite cocktails months ahead of time! </p>
+            
+        </div>
+        </div>
+        <div class="card">
+        <img class="card-img-top" src="./Assets/savefav.jpg" alt="People enjoying their favorite meals.">
+        <div class="card-body">
+            <h5 class="card-title">Save Your Favorites!</h5>
+            <p class="card-text">We've made it easy to store and access your favorite recipes at the click of a button.  </p>
+        
+        </div>
+        </div>
+    </div>
+    </div>
+    </div>
+<!-- Footer  -->
+    <footer class="footer">
+        Golden Child Meal Planner &#169;
+    </footer>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="./recipeApi.js"></script>
-    <script defer src="./cocktailApi.js"></script>
-    <!-- <script defer src="testForLoopAssignFunction.js"></script> -->
+
 </body>
 </html>

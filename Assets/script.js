@@ -13,20 +13,29 @@ $(document).ready(function(){
     const now = moment().format('MMMM YYYY');
     $(".month").append(now);
 // creating the days of week for calendar
-        $('.week').append(daysOfWeek[0] + " ") ;
-        $('.week').append(daysOfWeek[1] + " ") ;
-        $('.week').append(daysOfWeek[2] + " ") ;
-        $('.week').append(daysOfWeek[3] + " ") ;
-        $('.week').append(daysOfWeek[4] + " ") ;
-        $('.week').append(daysOfWeek[5] + " ") ;
-        $('.week').append(daysOfWeek[6] + " ") ;
-    
+    for (i = 0; i < daysOfWeek.length; i++) {
+        $('.week').append(daysOfWeek[i] + " ") ;
+        // $('.week').append(daysOfWeek[1] + " ") ;
+        // $('.week').append(daysOfWeek[2] + " ") ;
+        // $('.week').append(daysOfWeek[3] + " ") ;
+        // $('.week').append(daysOfWeek[4] + " ") ;
+        // $('.week').append(daysOfWeek[5] + " ") ;
+        // $('.week').append(daysOfWeek[6] + " ") ;
+    }
     // creating days for current month
     for (day = 1; day <= moment().daysInMonth(); day++) {
-        
+
+
         //$().addClass('row');
         var newDay = $("<div>").addClass("day");
-        
+        newDay.attr("data-toggle", "modal").attr("data-target", "#exampleModalLong");
+
+        // Adding Unordered List to each day
+        var unorderedList= $('ul').addClass("recipe-list");
+        $(newDay).append(unorderedList);
+
+
+
         // checking what day start of month is on and appending it properly to grid
         if (startOfMonth != daysOfWeek[currentDay] && hasReachedDay == false) {
             day--;
@@ -52,12 +61,12 @@ $(document).ready(function(){
             }
 
 
-            
+
         }
 // Dynamically adding borders to the Calendar Days
         $('.day').css("border", "black 1px solid") 
-        
-        
+
+
     }
     // Getting styling for Past, Present, Future
 
@@ -65,8 +74,12 @@ $(document).ready(function(){
 // Click event for each individual Day
         $(document).on("click", ".day", function(){
             console.log($(this).text())
+
+
+
         })
 
 })
 
 
+// create an empty modal for on click event 
