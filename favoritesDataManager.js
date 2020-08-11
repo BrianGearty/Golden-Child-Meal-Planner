@@ -15,7 +15,7 @@ if(loadCocktails != null){
     favoriteCocktails = loadCocktails;
 }
 
-function saveNewRecipe(recipeName, ingredientsList, healthLabels, numberOfServings, recipeUrl, imageUrl){
+export function saveNewRecipe(recipeName, ingredientsList, healthLabels, numberOfServings, recipeUrl, imageUrl){
     var newFavorite = {
         name: recipeName,
         ingredients: ingredientsList,
@@ -30,7 +30,7 @@ function saveNewRecipe(recipeName, ingredientsList, healthLabels, numberOfServin
     localStorage.setItem(localStorageRecipes, JSON.stringify(favoriteRecipes));
 }
 
-function saveNewCocktail(drinkName, ingredientList, drinkRecipe, drinkThumbnailSrc){
+export function saveNewCocktail(drinkName, ingredientList, drinkRecipe, drinkThumbnailSrc){
     //save it as an object
     var newFavorite = {
         name: drinkName, 

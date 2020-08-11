@@ -1,6 +1,6 @@
 $(document).ready(function() {
     //where recipes are displayed
-    const displayHolder = $("#test");
+    const displayHolder = $("#cocktail-card-holder");
 
     //number of drink recipies displayed
     const numberOfDrinksSearched = 5;
@@ -279,5 +279,16 @@ $(document).ready(function() {
         });
     }
 
-    searchCocktailByName("mojito");
+    //assigne function to search buttons
+    $("#cocktail-search-name").click(function(){
+        var cocktailName = $("#cocktail-name-field").val();
+        searchCocktailByName(cocktailName);
+    });
+
+    $("#cocktail-search-Ingredient").click(function(){
+        var cocktailIngredient = $("#cocktail-Ingredient-field").val();
+        searchCocktailByIngrediant(cocktailIngredient);
+    });
+
+    $("#random-cocktail").click(getRandomDrinkRecipe);
 });

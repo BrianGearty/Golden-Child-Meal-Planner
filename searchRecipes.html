@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCMP Recipes</title>
+</head>
+<body>
+    <div class="container">
+        <header class="row">
+            <h1>Plan Food & Cocktail Recipes</h1>
+        </header>
+        <main class="row">
+            <!-- Search Recipes -->
+            <div class ="col-6 container">
+                <h2>Food</h2>
+                <!-- Main Search Area -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Main Ingredient" id="recipe-main-ingredient">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="search-recipe-button">Search</button>
+                    </div>
+                </div>
+                <!-- Diet Type radio buttons -->
+                <h2>Diet Type (Optional)</h2>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input diet-type-button" type="radio" name="foodDietTypeRadio" value="">
+                    <label class="form-check-label" for="inlineRadio1">None</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input diet-type-button" type="radio" name="foodDietTypeRadio" value="balanced">
+                    <label class="form-check-label" for="inlineRadio2">Balanced</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input diet-type-button" type="radio" name="foodDietTypeRadio" value="high-protein">
+                    <label class="form-check-label" for="inlineRadio3">High Protein</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input diet-type-button" type="radio" name="foodDietTypeRadio" value="low-fat">
+                    <label class="form-check-label" for="inlineRadio2">Low Fat</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input diet-type-button" type="radio" name="foodDietTypeRadio" value="low-carb">
+                    <label class="form-check-label" for="inlineRadio3">Low Carb</label>
+                </div>
+                <!-- Health & Allergy Radio Buttons -->
+                <h2>Health & Allergy Restriction (Optional)</h2>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input health-type-button" type="radio" name="foodAllergyAndHealthRadio" value="">
+                    <label class="form-check-label" for="inlineRadio1">None</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input health-type-button" type="radio" name="foodAllergyAndHealthRadio" value="alcohol-free">
+                    <label class="form-check-label" for="inlineRadio2">Alcohol Free</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input health-type-button" type="radio" name="foodAllergyAndHealthRadio" value="peanut-free">
+                    <label class="form-check-label" for="inlineRadio3">Peanut Free</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input health-type-button" type="radio" name="foodAllergyAndHealthRadio" value="sugar-conscious">
+                    <label class="form-check-label" for="inlineRadio2">Sugar Conscious</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input health-type-button" type="radio" name="foodAllergyAndHealthRadio" value="tree-nut-free">
+                    <label class="form-check-label" for="inlineRadio3">Tree-Nut Free</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input health-type-button" type="radio" name="foodAllergyAndHealthRadio" value="vegan">
+                    <label class="form-check-label" for="inlineRadio3">Vegan</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input health-type-button" type="radio" name="foodAllergyAndHealthRadio" value="vegetarian">
+                    <label class="form-check-label" for="inlineRadio3">Vegetarian</label>
+                </div>
+                <!-- Display Results Of Search -->
+                <div id="rescipe-search-results-area">
+                    <h3>Results:</h3>
+                    <!-- recipeApi.js appends new elements here -->
+                    <div id="recipe-card-holder"></div>
+                </div>
+                
+            </div>
+            <!-- Search Cocktails -->
+            <div class ="col-6 container">
+                <h2>Cocktails</h2>
+                <!-- By Name -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search Cocktail By Name" id="cocktail-name-field">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="cocktail-search-name">Search</button>
+                    </div>
+                </div>
+                <!-- By Ingedient, returns 5 at random -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search Cocktail By Ingredient" id="cocktail-Ingredient-field">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="cocktail-search-Ingredient">Search</button>
+                    </div>
+                </div>
+                <!-- Random Cocktail -->
+                <button class="btn btn-primary" id="random-cocktail">Get Random Cocktail</button>
+                <!-- Display Results Of Search -->
+                <div id="cocktail-search-results-area">
+                    <h3>Results:</h3>
+                    <!-- cocktailApi.js appends new elements here -->
+                    <div id="cocktail-card-holder"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js" SameSite=None></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script defer type="module" src="./recipeApi.js"></script>
+    <script defer src="./cocktailApi.js"></script>
+</body>
+</html>
