@@ -6,6 +6,89 @@ $(document).ready(function() {
     const numberOfDrinksSearched = 5;
     var searchedDrinksArray = [];
 
+    //loads saved data of favorited recipes if found
+    var favoritedCocktails = JSON.parse(localStorage.getItem("golden-child-Cocktails"));
+
+    //called by displaySearchedInformation
+    function addFavoritesButtonToCard(drinkName){
+        var holder = $("<div>").addClass("row cocktail-search-card-favorites-holder");
+        var favText = $("<div>").addClass("col-7 cocktail-search-card-favorites-text");
+        var favImg = $("<img>").addClass("col-3 cocktail-search-card-favorites-img");
+
+        if(favoritedCocktails != null){
+            var checkIfFavorite = false;
+            //check if already favorite
+            $.each(favoritedCocktails, function(i, index){
+                if(index.name == drinkName){
+                    checkIfFavorite = true;
+                }
+            });
+            //if favorite
+            if(checkIfFavorite){
+                $(favText).text("One of your Favorites");
+                $(favImg).attr("src", "./icons/favorited.png");
+            }
+            //if NOT favorite
+            else{
+                $(favText).text("Click Heart to Add to Favorites");
+                $(favImg).attr("src", "./icons/not-favorited.png").click(function(event){
+                    //makes sure the function only runs once
+                    $(this).off();
+                    //access the card that all the info is stored in
+                    var wholeCard = $(this).parents(".cocktail-search-card-holder")[0];
+                    //an in-between variable used for processing the list into an array for ingredientsList
+                    var listHolder = $(wholeCard).children(".cocktail-search-card-ingredients-ol")[0];
+                    var ingredientsList = [];
+                    $.each($(listHolder).children("li"), function(i, index){
+                        ingredientsList.push(index.textContent);
+                    });
+        
+                    var drinkRecipe = $(wholeCard).children(".cocktail-search-card-recipe").text();
+                    
+                    var drinkThumbnailSrc = $(wholeCard).children(".cocktail-search-card-image").attr("src");
+                    
+                    //imported function from favoritesDataManager.js
+                    //saveNewRecipe(recipeName, ingredientsList, healthLabels, numberOfServings, recipeUrl, imageUrl);
+        
+                    $(favText).text("One of your Favorites");
+                    $(favImg).attr("src", "./icons/favorited.png");
+
+                    console.log(drinkRecipe);
+                });
+            }
+        //if no save data found, don't bother checking for favorites
+        }else{
+            $(favText).text("Click Heart to Add to Favorites");
+            $(favImg).attr("src", "./icons/not-favorited.png").click(function(event){
+                //makes sure the function only runs once
+                $(this).off();
+                //access the card that all the info is stored in
+                var wholeCard = $(this).parents(".cocktail-search-card-holder")[0];
+                //an in-between variable used for processing the list into an array for ingredientsList
+                var listHolder = $(wholeCard).children(".cocktail-search-card-ingredients-ol")[0];
+                var ingredientsList = [];
+                $.each($(listHolder).children("li"), function(i, index){
+                    ingredientsList.push(index.textContent);
+                });
+    
+                var drinkRecipe = $(wholeCard).children(".cocktail-search-card-recipe").text();
+                
+                var drinkThumbnailSrc = $(wholeCard).children(".cocktail-search-card-image").attr("src");
+                
+                //imported function from favoritesDataManager.js
+                saveNewCocktail(drinkName, ingredientsList, drinkRecipe, drinkThumbnailSrc);
+
+                $(favText).text("One of your Favorites");
+                $(favImg).attr("src", "./icons/favorited.png");
+            });
+        }
+        
+        $(holder).append(favText, favImg);
+    
+        //returns the holder to append it to the end of the card
+        return holder;
+    }
+
     //called at the end of the search functions do display the info
     function displaySearchedInformation(drinkName, ingrediantList, drinkRecipe, drinkThumbnailSrc){
         //TODO create display function
@@ -23,6 +106,9 @@ $(document).ready(function() {
         var drinkImage = $("<img>").addClass("cocktail-search-card-image").attr("src", drinkThumbnailSrc);
 
         $(cocktailHolder).append(drinkImage, nameDisplay, ingredientsHolder, recipeHolder);
+
+        //add favorites bar
+        $(cocktailHolder).append(addFavoritesButtonToCard(drinkName));
 
         $(displayHolder).append(cocktailHolder);
     }
@@ -74,14 +160,6 @@ $(document).ready(function() {
 
             //the url to an image of the drink. Be sure to add it to the src of the acompanying image
             var drinkThumbnailSrc = drinkInfo.strDrinkThumb;
-
-            //TODO create script that displays this info in the html
-            console.log(drinkName);
-            $.each(ingrediantList, function(i, index){
-                console.log(index);
-            });
-            console.log(drinkRecipe);
-            console.log(drinkThumbnailSrc);
 
             $(displayHolder).empty();
             displaySearchedInformation(drinkName, ingrediantList, drinkRecipe, drinkThumbnailSrc);
@@ -139,13 +217,6 @@ $(document).ready(function() {
                 //the url to an image of the drink. Be sure to add it to the src of the acompanying image
                 var drinkThumbnailSrc = drinkInfo.strDrinkThumb;
 
-                //TODO create script that displays this info in the html
-                console.log(drinkName);
-                $.each(ingrediantList, function(i, index){
-                    console.log(index);
-                });
-                console.log(drinkRecipe);
-                console.log(drinkThumbnailSrc);
                 displaySearchedInformation(drinkName, ingrediantList, drinkRecipe, drinkThumbnailSrc);
             }
             else
@@ -207,14 +278,6 @@ $(document).ready(function() {
                 //the url to an image of the drink. Be sure to add it to the src of the acompanying image
                 var drinkThumbnailSrc = drinkInfo.strDrinkThumb;
 
-                //TODO create script that displays this info in the html
-                console.log(drinkName);
-                $.each(ingrediantList, function(i, index){
-                    console.log(index);
-                });
-                console.log(drinkRecipe);
-                console.log(drinkThumbnailSrc);
-
                 $(displayHolder).empty();
                 displaySearchedInformation(drinkName, ingrediantList, drinkRecipe, drinkThumbnailSrc);
             }
@@ -252,7 +315,6 @@ $(document).ready(function() {
             url: urlPath,
             method: "GET"
         }).then(function(response){
-            console.log(response);
             //make sure it actually got a response
             if(response != ""){
                 //clear the holder at the start
