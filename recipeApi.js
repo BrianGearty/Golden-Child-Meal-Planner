@@ -153,7 +153,7 @@ function addScheduleDropdownsRecipe(){
 }
 
 //called by displaySearchedRecipes
-function addFavoritesButtonToCard(recipeName){
+function addFavoritesButtonToCardRecipe(recipeName){
     var holder = $("<div>").addClass("row recipe-search-card-favorites-holder");
     var favText = $("<div>").addClass("col-7 recipe-search-card-favorites-text");
     var favImg = $("<img>").addClass("col-3 recipe-search-card-favorites-img");
@@ -256,7 +256,7 @@ function addFavoritesButtonToCard(recipeName){
 
 //called from the searchForRecipes function when it loops through the list of recipes
 function displaySearchedRecipe(name, ingredients, healthLabels, servings, recipeUrl, imageUrl){
-    //TODO write code to display recipes
+    //holds the card
     var recipeHolder = $("<div>").addClass("recipe-search-card-holder");
     var nameDisplay = $("<h2>").addClass("recipe-search-card-name").text(name);
     //put ingredients into an ordered list
@@ -296,7 +296,7 @@ function displaySearchedRecipe(name, ingredients, healthLabels, servings, recipe
     }
 
     //add favorites button
-    $(recipeHolder).append(addScheduleDropdownsRecipe(), addFavoritesButtonToCard(name));
+    $(recipeHolder).append(addScheduleDropdownsRecipe(), addFavoritesButtonToCardRecipe(name));
 
     $(cardHolder).append(recipeHolder);
 }
