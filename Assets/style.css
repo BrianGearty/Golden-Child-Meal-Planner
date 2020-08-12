@@ -1,7 +1,6 @@
 Header
 .navbar {
-    border-bottom: black 2px inset !important;
-    background-color: rgb(237, 220, 125) !important;
+    
 }
 .navbar-brand {
     color:rgb(237, 220, 125) !important; 
@@ -100,9 +99,10 @@ Header
     font-size: x-large;
 }
 
-.index {
-    background-image: url('/Users/briangearty/Golden-Child-Meal-Planner/Assets/blackngold.jpg');
+.body {
+    background-image: url('./blackngold.jpg');
     background-size: auto;
+    background-position: center;
 }
 
 .footer {
@@ -111,4 +111,18 @@ Header
     font-family: 'Cinzel', serif;
     color: rgb(237, 220, 125);
 
+}
+
+/* Favorites Page */
+
+#fav-food {
+    margin: 35px;
+    height: 500px;
+    width: 35%;
+}
+
+#fav-cocktail {
+    margin: 35px;
+    height: 500px;
+    width: 35%;
 }
