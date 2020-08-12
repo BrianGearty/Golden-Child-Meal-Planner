@@ -1,7 +1,6 @@
 Header
 .navbar {
-    border-bottom: black 2px inset !important;
-    background-color: rgb(237, 220, 125) !important;
+    
 }
 .navbar-brand {
     color:rgb(237, 220, 125) !important; 
@@ -99,9 +98,10 @@ Header
     font-size: x-large;
 }
 
-.index {
-    background-image: url('/Users/briangearty/Golden-Child-Meal-Planner/Assets/blackngold.jpg');
+.body {
+    background-image: url('./blackngold.jpg');
     background-size: auto;
+    background-position: center;
 }
 
 .footer {
@@ -111,25 +111,4 @@ Header
     color: rgb(237, 220, 125);
 
 }
-
-/* search area */
-
-.cocktail-search-card-holder, .recipe-search-card-holder {
-    background-color: green;
-    margin-bottom: 30px;
-    padding: 10px;
-
-}
-
-.cocktail-search-card-image {
-    width: 100%;
-}
-
-.recipe-search-card-favorites-text, .cocktail-search-card-favorites-text {
-    font-size: 30px;
-    text-align: center;
-}
-
-.recipe-search-card-button {
-    background-color: white;
 }
