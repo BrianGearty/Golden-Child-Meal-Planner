@@ -7,11 +7,26 @@
     <link rel="stylesheet" href="./Assets/style.css">
     <title>GCMP Recipes</title>
 </head>
-<body>
-    <div class="container">
-        <header class="row">
-            <h1>Plan Food & Cocktail Recipes</h1>
-        </header>
+<body class="body">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand">Golden Child Meal Planner</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="searchRecipes.html">Search Recipes</a>
+            <a class="nav-item nav-link" href="calendar.html">Calendar</a>
+            <a class="nav-item nav-link" href="favorites.html">Favorite Recipes</a>
+        </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+        <div class="container">
         <main class="row">
             <!-- Search Recipes -->
             <div class ="col-6 container">
@@ -77,7 +92,7 @@
                 </div>
                 <!-- Display Results Of Search -->
                 <div id="rescipe-search-results-area">
-                    <h3>Results:</h3>
+                    <h3 class="results">Results:</h3>
                     <!-- recipeApi.js appends new elements here -->
                     <div id="recipe-card-holder"></div>
                 </div>
@@ -104,7 +119,7 @@
                 <button class="btn btn-primary" id="random-cocktail">Get Random Cocktail</button>
                 <!-- Display Results Of Search -->
                 <div id="cocktail-search-results-area">
-                    <h3>Results:</h3>
+                    <h3 class="results">Results:</h3>
                     <!-- cocktailApi.js appends new elements here -->
                     <div id="cocktail-card-holder"></div>
                 </div>
@@ -112,17 +127,16 @@
         </main>
     </div>
 
-     <!-- REMOVE FROM FINAL -->
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown
-    </button>
-    <div class="dropdown-menu">
-        <button class="dropdown-item" type="button">Action</button>
-        <button class="dropdown-item" type="button">Another action</button>
-        <button class="dropdown-item" type="button">Something else here</button>
-    </div>
-</div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Footer  -->
+    <footer class="footer">
+        Golden Child Meal Planner &#169;
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
