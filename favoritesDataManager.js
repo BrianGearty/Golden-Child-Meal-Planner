@@ -119,7 +119,7 @@ if(recipesFavHolder.length > 0){
                 $(recipeHolder).remove();
             }).text("Remove From Favorites");
 
-            $(recipeHolder).append(removeFromFavoritesButton);
+            $(recipeHolder).append($("<br>") ,removeFromFavoritesButton);
 
             $(recipesFavHolder).append(recipeHolder);
         });
