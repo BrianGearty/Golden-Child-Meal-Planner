@@ -132,14 +132,40 @@ function createNewDatesForCocktails(){
 
 //for button
 function saveRecipeToCalendar(monthIndex, dayMinusOne, _name, _ingredients, _healthLabels, _servings, _recipeUrl, _imageUrl){
-    calendarRecipes[monthIndex].scheduledRecipes[dayMinusOne].scheduleRecipe(_name, _ingredients, _healthLabels, _servings, _recipeUrl, _imageUrl);
+    //calendarRecipes[monthIndex].scheduledRecipes[dayMinusOne].scheduleRecipe(_name, _ingredients, _healthLabels, _servings, _recipeUrl, _imageUrl);
+
+    var cal = calendarRecipes[monthIndex].scheduledRecipes[dayMinusOne];
+    console.log(cal.recipeOnThisDate);
+    cal.recipeOnThisDate = true;
+    cal.name = _name;
+    cal.ingredients = _ingredients;
+    cal.healthLabels = _healthLabels;
+    cal.servings = _servings;
+    cal.recipeUrl = _recipeUrl;
+    cal.imageUrl = _imageUrl;
+
+    //sets data to altered values
+    calendarRecipes[monthIndex].scheduledRecipes[dayMinusOne] = cal;
+
     localStorage.setItem(localStorageRecipeCalendar, JSON.stringify(calendarRecipes));
 }
 
 //for button
 function saveCocktailToCalendar(monthIndex, dayMinusOne, _drinkName, _ingrediantList, _drinkRecipe, _drinkThumbnailSrc){
-    calendarCocktails[monthIndex].scheduledCocktails[dayMinusOne].scheduleCocktail(_drinkName, _ingrediantList, _drinkRecipe, _drinkThumbnailSrc);
+    //calendarCocktails[monthIndex].scheduledCocktails[dayMinusOne].scheduleCocktail(_drinkName, _ingrediantList, _drinkRecipe, _drinkThumbnailSrc);
+    
+    var cal = calendarCocktails[monthIndex].scheduledCocktails[dayMinusOne];
+
+    cal.cocktailOnThisDate = true;
+    cal.drinkName = _drinkName;
+    cal.ingrediantList = _ingrediantList;
+    cal.drinkRecipe = _drinkRecipe;
+    cal.drinkThumbnailSrc = _drinkThumbnailSrc;
+
+    calendarCocktails[monthIndex].scheduledCocktails[dayMinusOne] = cal;
+    
     localStorage.setItem(localStorageCocktailCalendar, JSON.stringify(calendarCocktails));
+    console.log(calendarCocktails);
 }
 
 //creates cocktail data if none is found
@@ -170,7 +196,7 @@ else
 //creates recipe data if none is found
 if(loadRecipes != null){
     calendarRecipes = loadRecipes;
-    //TODO compare dates to edit them
+    //compares dates to edit them
     createNewDatesForRecipes();
 }else{
     for (var i = 0; i < monthsTracked; i++){
@@ -187,6 +213,5 @@ if(loadRecipes != null){
         }
     }
 
-    console.log(calendarRecipes);
     localStorage.setItem(localStorageRecipeCalendar, JSON.stringify(calendarRecipes));
 }
