@@ -12,7 +12,7 @@ Header
     font-family: 'Cinzel', serif;
 }
 /* Current Month */
-.month {
+#month, #month-2, #month-3 {
     text-align: center;
     font-size: x-large;
     font-weight: bold;
@@ -21,7 +21,7 @@ Header
     font-family: 'Cinzel', serif;
 }
 /* Calendar */
-#calendar {
+#calendar, #calendar-month-2, #calendar-month-3 {
     margin: 25px;
     display: grid;
     grid-template-columns: repeat(7, 1fr) ;
@@ -34,7 +34,7 @@ Header
     height: 100px;
 }
 /* Names of Days at top of Calendar */
-.week {
+#week, #week-month-2, #week-month-3 {
     font-size: larger;
     display: grid;
     grid-template-rows: 1fr;

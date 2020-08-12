@@ -2,6 +2,8 @@ $(document).ready(function(){
 
 // calling calendar id from calendar.html
     var calendar = $('#calendar');
+    var calendarMonthTwo = $("#calendar-month-2");
+    var calendarMonthThree = $("#calendar-month-3")
     var daysOfWeek= ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     var currentDay = 0;
     var hasReachedDay = false;
@@ -16,17 +18,141 @@ $(document).ready(function(){
     var loadRecipes = JSON.parse(localStorage.getItem(localStorageRecipeCalendar));
     var loadCocktails = JSON.parse(localStorage.getItem(localStorageCocktailCalendar));
 
-// Giving current month
-    const now = moment().format('MMMM YYYY');
-    $(".month").append(now);
-// creating the days of week for calendar
+    var startNextMonth = moment().add(1, "month").startOf('month').format('dddd');
+    var currentDayNextMonth = 0;
+    var hasReachedDayNextMonth = false;
+
+    const nextMonth = moment().add(1, "month").format('MMMM YYYY');
+    $("#month-2").append(nextMonth);
+    // creating the days of week for calendar
     for (i = 0; i < daysOfWeek.length; i++) {
-        $('.week').append(daysOfWeek[i] + " ") ;
+        $('#week-month-2').append(daysOfWeek[i] + " ") ;
     }
     // creating days for current month
-    for (day = 1; day <= moment().daysInMonth(); day++) {
+    for (var day = 1; day <= moment().add(1, "month").daysInMonth(); day++) {
+        //$().addClass('row');
+        var newDay = $("<div>").addClass("day");
+        $(newDay).attr("month", 1).attr("day", day - 1);
 
+        // Adding Unordered List to each day
+        var unorderedList= $('ul').addClass("recipe-list");
+        $(newDay).append(unorderedList);
 
+        // checking what day start of month is on and appending it properly to grid
+        if (startNextMonth != daysOfWeek[currentDayNextMonth] && hasReachedDayNextMonth == false) {
+            day--;
+            $(newDay).addClass("past");
+            $(calendarMonthTwo).append(newDay);
+            currentDayNextMonth++;
+        }else {
+            $(newDay).text(day);
+            $(calendarMonthTwo).append(newDay);
+            hasReachedDayNextMonth = true;
+
+            $(newDay).addClass('future').removeClass('past present');
+
+            //check if saved recipe data
+            if(loadRecipes != null){
+                var recipeAtThisDate = loadRecipes[$(newDay).attr("month")].scheduledRecipes[$(newDay).attr("day")];
+
+                if(recipeAtThisDate.recipeOnThisDate){
+                    //only activates modal if data is present
+                    $(newDay).attr("data-toggle", "modal").attr("data-target", "#exampleModalLong");
+
+                    var recipeItem = $("<li>").text("Recipe Scheduled").attr("id", "recipe" + 1 + (day - 1));
+
+                    //add marker to recipe
+                    $(newDay).append(recipeItem);
+                }
+            }
+
+            //check if saved cocktail
+            if(loadCocktails != null){
+                var cocktailAtThisDate = loadCocktails[$(newDay).attr("month")].scheduledCocktails[$(newDay).attr("day")];
+
+                if(cocktailAtThisDate.cocktailOnThisDate){
+                    $(newDay).attr("data-toggle", "modal").attr("data-target", "#exampleModalLong");
+
+                    var cocktailItem = $("<li>").text("Cocktail Scheduled").attr("id", "cocktail" + 1 + (day - 1));
+
+                    $(newDay).append(cocktailItem);
+                }
+            }
+        }
+    }
+
+    var startNextNextMonth = moment().add(2, "month").startOf('month').format('dddd');
+    var currentDayNextNextMonth = 0;
+    var hasReachedDayNextNextMonth = false;
+
+    const nextNextMonth = moment().add(2, "month").format('MMMM YYYY');
+    $("#month-3").append(nextNextMonth);
+    // creating the days of week for calendar
+    for (i = 0; i < daysOfWeek.length; i++) {
+        $('#week-month-3').append(daysOfWeek[i] + " ") ;
+    }
+    // creating days for current month
+    for (var day = 1; day <= moment().add(2, "month").daysInMonth(); day++) {
+        //$().addClass('row');
+        var newDay = $("<div>").addClass("day");
+        $(newDay).attr("month", 2).attr("day", day - 1);
+
+        // Adding Unordered List to each day
+        var unorderedList= $('ul').addClass("recipe-list");
+        $(newDay).append(unorderedList);
+
+        // checking what day start of month is on and appending it properly to grid
+        if (startNextNextMonth != daysOfWeek[currentDayNextNextMonth] && hasReachedDayNextNextMonth == false) {
+            day--;
+            $(newDay).addClass("past");
+            $(calendarMonthThree).append(newDay);
+            currentDayNextNextMonth++;
+        }else {
+            $(newDay).text(day);
+            $(calendarMonthThree).append(newDay);
+            hasReachedDayNextNextMonth = true;
+
+            $(newDay).addClass('future').removeClass('past present');
+
+            //check if saved recipe data
+            if(loadRecipes != null){
+                var recipeAtThisDate = loadRecipes[$(newDay).attr("month")].scheduledRecipes[$(newDay).attr("day")];
+
+                if(recipeAtThisDate.recipeOnThisDate){
+                    //only activates modal if data is present
+                    $(newDay).attr("data-toggle", "modal").attr("data-target", "#exampleModalLong");
+
+                    var recipeItem = $("<li>").text("Recipe Scheduled").attr("id", "recipe" + 2 + (day - 1));
+
+                    //add marker to recipe
+                    $(newDay).append(recipeItem);
+                }
+            }
+
+            //check if saved cocktail
+            if(loadCocktails != null){
+                var cocktailAtThisDate = loadCocktails[$(newDay).attr("month")].scheduledCocktails[$(newDay).attr("day")];
+
+                if(cocktailAtThisDate.cocktailOnThisDate){
+                    $(newDay).attr("data-toggle", "modal").attr("data-target", "#exampleModalLong");
+
+                    var cocktailItem = $("<li>").text("Cocktail Scheduled").attr("id", "cocktail" + 2 + (day - 1));
+
+                    $(newDay).append(cocktailItem);
+                }
+            }
+        }
+    }
+
+// Giving current month
+    const now = moment().format('MMMM YYYY');
+    $("#month").append(now);
+// creating the days of week for calendar
+    for (i = 0; i < daysOfWeek.length; i++) {
+        $('#week').append(daysOfWeek[i] + " ") ;
+    }
+    // creating days for current month
+    for (var day = 1; day <= moment().daysInMonth(); day++) {
         //$().addClass('row');
         var newDay = $("<div>").addClass("day");
         $(newDay).attr("month", 0).attr("day", day - 1);
@@ -34,8 +160,6 @@ $(document).ready(function(){
         // Adding Unordered List to each day
         var unorderedList= $('ul').addClass("recipe-list");
         $(newDay).append(unorderedList);
-
-
 
         // checking what day start of month is on and appending it properly to grid
         if (startOfMonth != daysOfWeek[currentDay] && hasReachedDay == false) {
