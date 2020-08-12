@@ -2,8 +2,6 @@ const cardHolder = $("#recipe-card-holder");
 const mainIngredientInputField = $("#recipe-main-ingredient")
 const searchButton = $("#search-recipe-button")
 
-//const saveNewRecipe = require("./favoritesDataManager.js");
-
 //loads saved data of favorited recipes if found
 var favoritedRecipes = JSON.parse(localStorage.getItem("golden-child-Recipes"));
 
@@ -15,6 +13,70 @@ var dietType = "";
 
 //alcohol-free, peanut-free, sugar-conscious, tree-nut-free, vegan, vegetarian
 var allergyAndHealth = "";
+
+function addScheduleDropdowns(){
+    var buttonsHolder = $("<div>").addClass("row schedule-buttons-holder");
+    var monthHolder = $("<div>").addClass("dropdown month-holder");
+    var monthButton = $("<button>").addClass("btn btn-primary dropdown-toggle month-button").attr({
+        "type": "button",
+        "data-toggle": "dropdown",
+        "aria-haspopup": "true",
+        "aria-expanded": "false"
+        //using a span so changing it doesn't override the dropdowns
+    }).html("<span>Month:</span>");
+    var monthDropdown = $("<div>").addClass("dropdown-menu month-dropdown");
+
+    //TODO have it loop for each month
+    for(var i = 0; i < 5; i++){
+        //create dropdowns and add function
+        //TODO store month in val, or text or something
+        var newDropdown = $("<button>").addClass("dropdown-item").attr("type", "button").val(i).text(i).click(function(event){
+            var monthHolder = $(this).parents(".month-holder")[0];
+            var monthButton = $(monthHolder).children();
+            console.log($(event.target).text());
+            console.log(monthButton[0]);
+            console.log(this);
+            $(monthButton.children("span")).text("Month: " + $(this).val());
+        });
+        $(monthDropdown).append(newDropdown);
+    }
+
+    $(monthHolder).append(monthButton, monthDropdown);
+    
+    var dayHolder = $("<div>").addClass("dropdown day-holder");
+    var dayButton = $("<button>").addClass("btn btn-primary dropdown-toggle day-button").attr({
+        "type": "button",
+        "data-toggle": "dropdown",
+        "aria-haspopup": "true",
+        "aria-expanded": "false"
+        //using a span so changing it doesn't override the dropdowns
+    }).html("<span>Day:</span>");
+    var dayDropdown = $("<div>").addClass("dropdown-menu day-dropdown");
+
+    //TODO have it loop for each day
+    for(var i = 0; i < 5; i++){
+        //create dropdowns and add function
+        //TODO store day in val, or text or something
+        var newDropdown = $("<button>").addClass("dropdown-item").attr("type", "button").val(i).text(i).click(function(event){
+            var dayHolder = $(this).parents(".day-holder")[0];
+            var dayButton = $(dayHolder).children();
+            console.log($(event.target).text());
+            console.log(dayButton[0]);
+            console.log(this);
+            $(dayButton.children("span")).text("Day: " + $(this).val());
+        });
+        $(dayDropdown).append(newDropdown);
+    }
+
+    $(dayHolder).append(dayButton, dayDropdown);
+
+    //make the button that save it
+    var scheduleButton = $("<button>").addClass("btn btn-primary").text("Schedule");
+
+    $(buttonsHolder).append(monthHolder, dayHolder, scheduleButton);
+
+    return(buttonsHolder);
+}
 
 //called by displaySearchedRecipes
 function addFavoritesButtonToCard(recipeName){
@@ -100,9 +162,9 @@ function addFavoritesButtonToCard(recipeName){
             //turns it from a string to a number
             numberOfServings = parseInt(numberOfServings);
 
-            recipeUrl = $(wholeCard).children(".recipe-search-card-button").attr("href");
+            var recipeUrl = $(wholeCard).children(".recipe-search-card-button").attr("href");
             
-            imageUrl = $(wholeCard).children(".recipe-search-card-image").attr("src");
+            var imageUrl = $(wholeCard).children(".recipe-search-card-image").attr("src");
             
             //imported function from favoritesDataManager.js
             saveNewRecipe(recipeName, ingredientsList, healthLabels, numberOfServings, recipeUrl, imageUrl);
@@ -160,7 +222,7 @@ function displaySearchedRecipe(name, ingredients, healthLabels, servings, recipe
     }
 
     //add favorites button
-    $(recipeHolder).append(addFavoritesButtonToCard(name));
+    $(recipeHolder).append(addScheduleDropdowns(), addFavoritesButtonToCard(name));
 
     $(cardHolder).append(recipeHolder);
 }

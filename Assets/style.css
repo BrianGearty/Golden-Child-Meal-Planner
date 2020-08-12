@@ -71,7 +71,6 @@ Header
     
 }
 
-
 .card-img-top {
     height:40%;
     width: 100%;
@@ -111,4 +110,26 @@ Header
     font-family: 'Cinzel', serif;
     color: rgb(237, 220, 125);
 
+}
+
+/* search area */
+
+.cocktail-search-card-holder, .recipe-search-card-holder {
+    background-color: green;
+    margin-bottom: 30px;
+    padding: 10px;
+
+}
+
+.cocktail-search-card-image {
+    width: 100%;
+}
+
+.recipe-search-card-favorites-text, .cocktail-search-card-favorites-text {
+    font-size: 30px;
+    text-align: center;
+}
+
+.recipe-search-card-button {
+    background-color: white;
 }

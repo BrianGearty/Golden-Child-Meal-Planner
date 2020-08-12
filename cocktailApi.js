@@ -48,12 +48,10 @@ $(document).ready(function() {
                     var drinkThumbnailSrc = $(wholeCard).children(".cocktail-search-card-image").attr("src");
                     
                     //imported function from favoritesDataManager.js
-                    //saveNewRecipe(recipeName, ingredientsList, healthLabels, numberOfServings, recipeUrl, imageUrl);
-        
+                    saveNewCocktail(drinkName, ingredientsList, drinkRecipe, drinkThumbnailSrc);
+
                     $(favText).text("One of your Favorites");
                     $(favImg).attr("src", "./icons/favorited.png");
-
-                    console.log(drinkRecipe);
                 });
             }
         //if no save data found, don't bother checking for favorites
