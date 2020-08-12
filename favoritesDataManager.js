@@ -30,11 +30,11 @@ function saveNewRecipe(recipeName, ingredientsList, healthLabels, numberOfServin
     localStorage.setItem(localStorageRecipes, JSON.stringify(favoriteRecipes));
 }
 
-function saveNewCocktail(drinkName, ingredientList, drinkRecipe, drinkThumbnailSrc){
+function saveNewCocktail(drinkName, ingredientsList, drinkRecipe, drinkThumbnailSrc){
     //save it as an object
     var newFavorite = {
         name: drinkName, 
-        ingredients: ingredientList,
+        ingredients: ingredientsList,
         recipe: drinkRecipe,
         srcUrl: drinkThumbnailSrc
     }

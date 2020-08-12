@@ -70,7 +70,6 @@ Header
     
 }
 
-
 .card-img-top {
     height:40%;
     width: 100%;
@@ -112,17 +111,4 @@ Header
     color: rgb(237, 220, 125);
 
 }
-
-/* Favorites Page */
-
-#fav-food {
-    margin: 35px;
-    height: 500px;
-    width: 35%;
-}
-
-#fav-cocktail {
-    margin: 35px;
-    height: 500px;
-    width: 35%;
 }
