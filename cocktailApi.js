@@ -134,7 +134,7 @@ function addScheduleDropdownsCocktail(){
 }
 
 //called by displaySearchedInformation
-function addFavoritesButtonToCard(drinkName){
+function addFavoritesButtonToCardCocktail(drinkName){
     var holder = $("<div>").addClass("row cocktail-search-card-favorites-holder");
     var favText = $("<div>").addClass("col-7 cocktail-search-card-favorites-text");
     var favImg = $("<img>").addClass("col-3 cocktail-search-card-favorites-img");
@@ -230,7 +230,7 @@ function displaySearchedInformation(drinkName, ingrediantList, drinkRecipe, drin
     $(cocktailHolder).append(drinkImage, nameDisplay, ingredientsHolder, recipeHolder);
 
     //add favorites bar
-    $(cocktailHolder).append(addScheduleDropdownsCocktail(), addFavoritesButtonToCard(drinkName));
+    $(cocktailHolder).append(addScheduleDropdownsCocktail(), addFavoritesButtonToCardCocktail(drinkName));
 
     $(displayHolder).append(cocktailHolder);
 }

@@ -8,6 +8,13 @@ $(document).ready(function(){
     var startOfMonth =moment().startOf('month').format('dddd');
     var todayCurrentMonth = parseInt(moment().format('YYYYMMDD'));
 
+    //modal elements that display the info
+    const recipeModal = $("#food-modal");
+    const cocktailModal = $("#drink-modal");
+
+    //load info if there
+    var loadRecipes = JSON.parse(localStorage.getItem(localStorageRecipeCalendar));
+    var loadCocktails = JSON.parse(localStorage.getItem(localStorageCocktailCalendar));
 
 // Giving current month
     const now = moment().format('MMMM YYYY');
@@ -15,12 +22,6 @@ $(document).ready(function(){
 // creating the days of week for calendar
     for (i = 0; i < daysOfWeek.length; i++) {
         $('.week').append(daysOfWeek[i] + " ") ;
-        // $('.week').append(daysOfWeek[1] + " ") ;
-        // $('.week').append(daysOfWeek[2] + " ") ;
-        // $('.week').append(daysOfWeek[3] + " ") ;
-        // $('.week').append(daysOfWeek[4] + " ") ;
-        // $('.week').append(daysOfWeek[5] + " ") ;
-        // $('.week').append(daysOfWeek[6] + " ") ;
     }
     // creating days for current month
     for (day = 1; day <= moment().daysInMonth(); day++) {
@@ -28,7 +29,7 @@ $(document).ready(function(){
 
         //$().addClass('row');
         var newDay = $("<div>").addClass("day");
-        newDay.attr("data-toggle", "modal").attr("data-target", "#exampleModalLong");
+        $(newDay).attr("month", 0).attr("day", day - 1);
 
         // Adding Unordered List to each day
         var unorderedList= $('ul').addClass("recipe-list");
@@ -60,8 +61,33 @@ $(document).ready(function(){
                 $(newDay).addClass('future').removeClass('past present');
             }
 
+            //check if saved recipe data
+            if(loadRecipes != null){
+                var recipeAtThisDate = loadRecipes[$(newDay).attr("month")].scheduledRecipes[$(newDay).attr("day")];
 
+                if(recipeAtThisDate.recipeOnThisDate){
+                    //only activates modal if data is present
+                    $(newDay).attr("data-toggle", "modal").attr("data-target", "#exampleModalLong");
 
+                    var recipeItem = $("<li>").text("Recipe Scheduled").attr("id", "recipe" + 0 + (day - 1));
+
+                    //add marker to recipe
+                    $(newDay).append(recipeItem);
+                }
+            }
+
+            //check if saved cocktail
+            if(loadCocktails != null){
+                var cocktailAtThisDate = loadCocktails[$(newDay).attr("month")].scheduledCocktails[$(newDay).attr("day")];
+
+                if(cocktailAtThisDate.cocktailOnThisDate){
+                    $(newDay).attr("data-toggle", "modal").attr("data-target", "#exampleModalLong");
+
+                    var cocktailItem = $("<li>").text("Cocktail Scheduled").attr("id", "cocktail" + 0 + (day - 1));
+
+                    $(newDay).append(cocktailItem);
+                }
+            }
         }
 // Dynamically adding borders to the Calendar Days
         $('.day').css("border", "black 1px solid") 
@@ -73,13 +99,111 @@ $(document).ready(function(){
 
 // Click event for each individual Day
         $(document).on("click", ".day", function(){
-            console.log($(this).text())
+            $(recipeModal).empty();
+            $(cocktailModal).empty();
 
+            if(loadRecipes != null){
+                var recipeAtThisDate = loadRecipes[$(this).attr("month")].scheduledRecipes[$(this).attr("day")]
 
+                if(recipeAtThisDate.recipeOnThisDate){
+                    //holds the card
+                    var recipeHolder = $("<div>").addClass("recipe-search-card-holder");
+                    var nameDisplay = $("<h2>").addClass("recipe-search-card-name").text(recipeAtThisDate.name);
+                    //put ingredients into an ordered list
+                    var ingredientsHolder = $("<ol>").addClass("recipe-search-card-ingredients-ol");
+                    $.each(recipeAtThisDate.ingredients, function(i, index){
+                        var currentIngredient = $("<li>").text(index);
+                        $(ingredientsHolder).append(currentIngredient);
+                    });
+    
+                    var healthHolder = $("<ul>").addClass("recipe-search-card-health-ul");
+                    var checkForHealthLabels = false;
+                    //check to see if there's any health labels
+                    if(recipeAtThisDate.healthLabels.length > 0){
+                        checkForHealthLabels = true;
+                        var healthTitle = $("<div>").addClass("recipe-search-card-health-ul-title").text("Health Label(s):")
+                        $(healthHolder).append(healthTitle);
+                        $.each(recipeAtThisDate.healthLabels, function(i, index){
+                            var currentHealth = $("<li>").text(index);
+                            $(healthHolder).append(currentHealth);
+                        });
+                    }
+    
+                    var servingDisplay = $("<div>").addClass("recipe-search-card-servings").text("Serves " + recipeAtThisDate.servings).attr("data-val", recipeAtThisDate.servings);
+    
+                    var recipeButton = $("<a>").addClass("recipe-search-card-button").text("Click To Get Recipe")
+                        .attr({"href": recipeAtThisDate.recipeUrl, "target": "_blank"});
+    
+                    var recipeImage = $("<img>").addClass("recipe-search-card-image").attr("src", recipeAtThisDate.imageUrl);
 
+                    //cancel button
+                    var cancelRecipeButton = $("<button>").addClass("btn btn-danger").text("Cancel Recipe").attr({
+                        month: $(this).attr("month"),
+                        day: $(this).attr("day")
+                    }).click(function(){
+                        cancelRecipe($(this).attr("month"), $(this).attr("day"));
+                        $("#recipe" + $(this).attr("month") + ($(this).attr("day"))).remove();
+                        $(recipeModal).empty();
+                    });
+    
+                    //check if there are any health labels
+                    if(checkForHealthLabels){
+                        $(recipeHolder).append(nameDisplay, recipeImage, ingredientsHolder, healthHolder, servingDisplay, recipeButton, "<br>", addFavoritesButtonToCardRecipe(recipeAtThisDate.name), cancelRecipeButton);
+                    }
+                    else
+                    {
+                        $(recipeHolder).append(nameDisplay, recipeImage, ingredientsHolder, servingDisplay, recipeButton, "<br>", addFavoritesButtonToCardRecipe(recipeAtThisDate.name), cancelRecipeButton);
+                    }
+    
+                    $(recipeModal).empty();
+                    $(recipeModal).append(recipeHolder);
+
+                    console.log(recipeAtThisDate);
+                }
+            }else{
+                //empties it if no saved data is found
+                $(recipeModal).empty();
+            }
+
+            if(loadCocktails != null){
+                var cocktailAtThisDate = loadCocktails[$(this).attr("month")].scheduledCocktails[$(this).attr("day")];
+
+                if(cocktailAtThisDate.cocktailOnThisDate){
+                    var cocktailHolder = $("<div>").addClass("cocktail-search-card-holder");
+                    var nameDisplay = $("<h2>").addClass("cocktail-search-card-name").text(cocktailAtThisDate.drinkName);
+                    //put ingredients into an ordered list
+                    var ingredientsHolder = $("<ol>").addClass("cocktail-search-card-ingredients-ol");
+                    $.each(cocktailAtThisDate.ingrediantList, function(i, index){
+                        var currentIngredient = $("<li>").text(index);
+                        $(ingredientsHolder).append(currentIngredient);
+                    });
+    
+                    var recipeHolder = $("<div>").addClass("cocktail-search-card-recipe").text(cocktailAtThisDate.drinkRecipe);
+    
+                    var drinkImage = $("<img>").addClass("cocktail-search-card-image").attr("src", cocktailAtThisDate.drinkThumbnailSrc);
+    
+                    //cancel button
+                    var cancelRecipeButton = $("<button>").addClass("btn btn-danger").text("Cancel Cocktail").attr({
+                        month: $(this).attr("month"),
+                        day: $(this).attr("day")
+                    }).click(function(){
+                        cancelCocktail($(this).attr("month"), $(this).attr("day"));
+                        $("#cocktail" + $(this).attr("month") + ($(this).attr("day"))).remove();
+                        $(cocktailModal).empty();
+                    });
+                    
+                    $(cocktailHolder).append(drinkImage, nameDisplay, ingredientsHolder, recipeHolder);
+    
+                    //add favorites bar
+                    $(cocktailHolder).append(addFavoritesButtonToCardCocktail(cocktailAtThisDate.drinkName), cancelRecipeButton);
+    
+                    $(cocktailModal).empty();
+                    $(cocktailModal).append(cocktailHolder);
+                }
+            }
+            else{
+                $(cocktailModal).empty();
+            }
         })
 
 })
-
-
-// create an empty modal for on click event 

@@ -54,17 +54,18 @@
             <div class="modal-body">
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col-md-6 ml-auto">Food</div>
-                  <div class="col-md-6 ml-auto">Drink</div>
+                  <div class="col-md-6 ml-auto">Food<br><span id="food-modal"></span></div>
+                  <div class="col-md-6 ml-auto">Drink<br><span id="drink-modal"></span></div>
                 </div>
               
             </div>
             </div>
-            <div class="modal-footer">
+            <!-- These look great, but we can't really use them. Sorry -->
+            <!-- <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Add To Favorites</button>
               <button type="button" class="btn btn-danger">Cancel Recipe</button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -79,6 +80,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script defer src="./calendarSaveSystem.js"></script>      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="./recipeApi.js"></script>
+    <script src="./cocktailApi.js"></script>
+    <script defer src="./favoritesDataManager.js"></script>
     <script src="./Assets/script.js"></script>
     </body>
     </html>

@@ -21,29 +21,7 @@ function createBlankRecipe(){
         healthLabels: [], 
         servings: 0, 
         recipeUrl: "", 
-        imageUrl: "",
-
-        //method to save data
-        scheduleRecipe: function(_name, _ingredients, _healthLabels, _servings, _recipeUrl, _imageUrl){
-            this.recipeOnThisDate = true;
-            this.name = _name;
-            this.ingredients = _ingredients;
-            this.healthLabels = _healthLabels;
-            this.servings = _servings;
-            this.recipeUrl = _recipeUrl;
-            this.imageUrl = _imageUrl;
-        },
-
-        //method to remove recipe
-        cancelRecipe: function(){
-            this.recipeOnThisDate = false;
-            this.name = "";
-            this.ingredients = [];
-            this.healthLabels = [];
-            this.servings = 0;
-            this.recipeUrl = "";
-            this.imageUrl = "";
-        }
+        imageUrl: ""
     };
 
     return recipeInfo;
@@ -135,7 +113,7 @@ function saveRecipeToCalendar(monthIndex, dayMinusOne, _name, _ingredients, _hea
     //calendarRecipes[monthIndex].scheduledRecipes[dayMinusOne].scheduleRecipe(_name, _ingredients, _healthLabels, _servings, _recipeUrl, _imageUrl);
 
     var cal = calendarRecipes[monthIndex].scheduledRecipes[dayMinusOne];
-    console.log(cal.recipeOnThisDate);
+
     cal.recipeOnThisDate = true;
     cal.name = _name;
     cal.ingredients = _ingredients;
@@ -190,6 +168,37 @@ else
     }
 
     console.log(calendarCocktails);
+    localStorage.setItem(localStorageCocktailCalendar, JSON.stringify(calendarCocktails));
+}
+
+function cancelRecipe(monthIndex, dayMinusOne){
+    var cal = calendarRecipes[monthIndex].scheduledRecipes[dayMinusOne];
+    
+    cal.recipeOnThisDate = false;
+    cal.name = "";
+    cal.ingredients = [];
+    cal.healthLabels = [];
+    cal.servings = 0;
+    cal.recipeUrl = "";
+    cal.imageUrl = "";
+
+    //sets data to altered values
+    calendarRecipes[monthIndex].scheduledRecipes[dayMinusOne] = cal;
+
+    localStorage.setItem(localStorageRecipeCalendar, JSON.stringify(calendarRecipes));
+}
+
+function cancelCocktail(monthIndex, dayMinusOne){
+    var cal = calendarCocktails[monthIndex].scheduledCocktails[dayMinusOne];
+
+    cal.cocktailOnThisDate = false;
+    cal.drinkName = "";
+    cal.ingrediantList = [];
+    cal.drinkRecipe = "";
+    cal.drinkThumbnailSrc = "";
+
+    calendarCocktails[monthIndex].scheduledCocktails[dayMinusOne] = cal;
+
     localStorage.setItem(localStorageCocktailCalendar, JSON.stringify(calendarCocktails));
 }
 
