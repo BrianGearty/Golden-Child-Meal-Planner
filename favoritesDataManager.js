@@ -119,7 +119,7 @@ if(recipesFavHolder.length > 0){
                 $(recipeHolder).remove();
             }).text("Remove From Favorites");
 
-            $(recipeHolder).append($("<br>") ,removeFromFavoritesButton);
+            $(recipeHolder).append(addScheduleDropdownsRecipe(), $("<br>") ,removeFromFavoritesButton);
 
             $(recipesFavHolder).append(recipeHolder);
         });
@@ -151,7 +151,9 @@ if(recipesFavHolder.length > 0){
                 $(cocktailHolder).remove();
             }).text("Remove From Favorites");
 
-            $(cocktailHolder).append(drinkImage, nameDisplay, ingredientsHolder, recipeHolder, removeFromFavoritesButton);
+            var schedule = addScheduleDropdownsCocktail();
+
+            $(cocktailHolder).append(drinkImage, nameDisplay, ingredientsHolder, recipeHolder, schedule, removeFromFavoritesButton);
 
             $(cocktailsFavHolder).append(cocktailHolder);
         })
