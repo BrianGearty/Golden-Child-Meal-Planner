@@ -57,7 +57,19 @@ Header
 
 /* Cards on Index.html */
 
-.card {
+#fav-food, #fav-cocktail {
+    margin: 50px;
+    margin-top: 50px;
+    border: rgb(237, 220, 125) 3px groove;
+    border-radius: 10px;
+    height: 85%;
+    width: 25%;
+    padding: 10px;
+    box-shadow: 5px;
+    background-color: rgb(148, 140, 94);
+    
+}
+.index-card {
     margin: 50px;
     margin-top: 50px;
     border: rgb(237, 220, 125) 3px groove;
@@ -67,7 +79,6 @@ Header
     padding: 10px;
     box-shadow: 5px;
     background-color: rgb(237, 220, 125);
-    
 }
 
 .card-img-top {
