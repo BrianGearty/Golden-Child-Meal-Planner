@@ -1,6 +1,8 @@
-Header
 .navbar {
-    
+    background-color: black;
+    border-bottom: gold solid 5px;
+    width: 100%;
+    margin-right: 0px;
 }
 .navbar-brand {
     color:rgb(237, 220, 125) !important; 
@@ -236,6 +238,7 @@ h3 {
     color:rgb(237, 220, 125) !important; 
     font-family: 'Cinzel', serif;
     font-size: xx-large;
+    background-color: white;
 }
 .recipe-search-card-image {
     display: block;

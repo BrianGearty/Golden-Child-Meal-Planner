@@ -153,7 +153,7 @@ if(recipesFavHolder.length > 0){
 
             var schedule = addScheduleDropdownsCocktail();
 
-            $(cocktailHolder).append(drinkImage, nameDisplay, ingredientsHolder, recipeHolder, schedule, removeFromFavoritesButton);
+            $(cocktailHolder).append(nameDisplay, drinkImage, ingredientsHolder, recipeHolder, schedule, removeFromFavoritesButton);
 
             $(cocktailsFavHolder).append(cocktailHolder);
         })
