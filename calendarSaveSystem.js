@@ -143,7 +143,6 @@ function saveCocktailToCalendar(monthIndex, dayMinusOne, _drinkName, _ingrediant
     calendarCocktails[monthIndex].scheduledCocktails[dayMinusOne] = cal;
     
     localStorage.setItem(localStorageCocktailCalendar, JSON.stringify(calendarCocktails));
-    console.log(calendarCocktails);
 }
 
 //creates cocktail data if none is found
@@ -167,7 +166,6 @@ else
         }
     }
 
-    console.log(calendarCocktails);
     localStorage.setItem(localStorageCocktailCalendar, JSON.stringify(calendarCocktails));
 }
 

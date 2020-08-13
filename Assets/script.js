@@ -13,6 +13,7 @@ $(document).ready(function(){
     //modal elements that display the info
     const recipeModal = $("#food-modal");
     const cocktailModal = $("#drink-modal");
+    const modalDateDisplay = $("#exampleModalLongTitle");
 
     //load info if there
     var loadRecipes = JSON.parse(localStorage.getItem(localStorageRecipeCalendar));
@@ -229,6 +230,9 @@ $(document).ready(function(){
         $(document).on("click", ".day", function(){
             $(recipeModal).empty();
             $(cocktailModal).empty();
+            //set modal date
+            var startMonth = moment().add($(this).attr("month"), "month").startOf("month");
+            $(modalDateDisplay).text(moment(startMonth).add($(this).attr("day"), "day").format("MMMM D YYYY"));
 
             if(loadRecipes != null){
                 var recipeAtThisDate = loadRecipes[$(this).attr("month")].scheduledRecipes[$(this).attr("day")]
@@ -285,8 +289,6 @@ $(document).ready(function(){
     
                     $(recipeModal).empty();
                     $(recipeModal).append(recipeHolder);
-
-                    console.log(recipeAtThisDate);
                 }
             }else{
                 //empties it if no saved data is found
@@ -297,6 +299,7 @@ $(document).ready(function(){
                 var cocktailAtThisDate = loadCocktails[$(this).attr("month")].scheduledCocktails[$(this).attr("day")];
 
                 if(cocktailAtThisDate.cocktailOnThisDate){
+
                     var cocktailHolder = $("<div>").addClass("cocktail-search-card-holder");
                     var nameDisplay = $("<h2>").addClass("cocktail-search-card-name").text(cocktailAtThisDate.drinkName);
                     //put ingredients into an ordered list

@@ -343,8 +343,16 @@ function searchByID(id){
         }
         else
         {
-            //TODO let the user know when the search failed
-            console.log("No Recipes Found")
+            $(displayHolder).empty();
+            
+            //create display holder
+            var noRecipesFoundHolder = $("<div>").addClass("cocktail-error-holder");
+            var noRecipesTitle = $("<h3>").addClass("cocktail-error-title").text("No Cocktails Found");
+            var noRecipesText = $("<div>").addClass("cocktail-error-text").text("Try a different search term");
+
+            //add info to holder, and holder to display
+            $(noRecipesFoundHolder).append(noRecipesTitle, noRecipesText);
+            $(displayHolder).append(noRecipesFoundHolder);
         }
     });
 }
@@ -409,7 +417,7 @@ function searchCocktailByName(name){
             
             //create display holder
             var noRecipesFoundHolder = $("<div>").addClass("cocktail-error-holder");
-            var noRecipesTitle = $("<h3>").addClass("cocktail-error-title").text("No Recipes Found");
+            var noRecipesTitle = $("<h3>").addClass("cocktail-error-title").text("No Cocktails Found");
             var noRecipesText = $("<div>").addClass("cocktail-error-text").text("Try a different search term");
 
             //add info to holder, and holder to display
@@ -453,7 +461,7 @@ function searchCocktailByIngrediant(ingrediant){
             
             //create display holder
             var noRecipesFoundHolder = $("<div>").addClass("cocktail-error-holder");
-            var noRecipesTitle = $("<h3>").addClass("cocktail-error-title").text("No Recipes Found");
+            var noRecipesTitle = $("<h3>").addClass("cocktail-error-title").text("No Cocktails Found");
             var noRecipesText = $("<div>").addClass("cocktail-error-text").text("Try a different search term");
 
             //add info to holder, and holder to display
