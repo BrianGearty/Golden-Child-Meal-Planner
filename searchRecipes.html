@@ -26,13 +26,16 @@
     <br>
     <br>
     <br>
+    <h1>Find Your Meals!</h1>
         <div class="container">
         <main class="row">
             <!-- Search Recipes -->
             <div class ="col-6 container">
+                    <div class="card-deck">
+                        <div class="card search-food" id="search-food">
                 <h2>Food</h2>
                 <!-- Main Search Area -->
-                <div class="input-group mb-3">
+                <div class="input-group m-1">
                     <input type="text" class="form-control" placeholder="Main Ingredient" id="recipe-main-ingredient">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button" id="search-recipe-button">Search</button>
@@ -96,20 +99,23 @@
                     <!-- recipeApi.js appends new elements here -->
                     <div id="recipe-card-holder"></div>
                 </div>
-                
+                </div>
+                </div>
             </div>
             <!-- Search Cocktails -->
             <div class ="col-6 container">
+                <div class="card-deck">
+                    <div class="card search-cocktail" id="search-cocktail">
                 <h2>Cocktails</h2>
                 <!-- By Name -->
-                <div class="input-group mb-3">
+                <div class="input-group m-1">
                     <input type="text" class="form-control" placeholder="Search Cocktail By Name" id="cocktail-name-field">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button" id="cocktail-search-name">Search</button>
                     </div>
                 </div>
                 <!-- By Ingedient, returns 5 at random -->
-                <div class="input-group mb-3">
+                <div class="input-group m-1">
                     <input type="text" class="form-control" placeholder="Search Cocktail By Ingredient" id="cocktail-Ingredient-field">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button" id="cocktail-search-Ingredient">Search</button>
@@ -123,6 +129,8 @@
                     <!-- cocktailApi.js appends new elements here -->
                     <div id="cocktail-card-holder"></div>
                 </div>
+            </div>
+            </div>
             </div>
         </main>
     </div>

@@ -227,7 +227,7 @@ function displaySearchedInformation(drinkName, ingrediantList, drinkRecipe, drin
 
     var drinkImage = $("<img>").addClass("cocktail-search-card-image").attr("src", drinkThumbnailSrc);
 
-    $(cocktailHolder).append(drinkImage, nameDisplay, ingredientsHolder, recipeHolder);
+    $(cocktailHolder).append(nameDisplay, drinkImage, ingredientsHolder, recipeHolder);
 
     //add favorites bar
     $(cocktailHolder).append(addScheduleDropdownsCocktail(), addFavoritesButtonToCardCocktail(drinkName));

@@ -110,7 +110,7 @@ function addScheduleDropdownsRecipe(){
     $(dayHolder).append(dayButton, dayDropdown);
 
     //make the button that save it
-    var scheduleButton = $("<button>").addClass("btn btn-primary").text("Schedule").click(function(){
+    var scheduleButton = $("<button>").addClass("btn schedule btn-primary").text("Schedule").click(function(){
         $(this).text("Added to Calendar");
 
         //access the card that all the info is stored in
