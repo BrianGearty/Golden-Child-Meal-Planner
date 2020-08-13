@@ -320,7 +320,7 @@ $(document).ready(function(){
                         $(cocktailModal).empty();
                     });
                     
-                    $(cocktailHolder).append(drinkImage, nameDisplay, ingredientsHolder, recipeHolder);
+                    $(cocktailHolder).append(nameDisplay, drinkImage, ingredientsHolder, recipeHolder);
     
                     //add favorites bar
                     $(cocktailHolder).append(addFavoritesButtonToCardCocktail(cocktailAtThisDate.drinkName), cancelRecipeButton);
