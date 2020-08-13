@@ -27,6 +27,7 @@ $(document).ready(function(){
     // creating the days of week for calendar
     for (i = 0; i < daysOfWeek.length; i++) {
         $('#week-month-2').append(daysOfWeek[i] + " ") ;
+    
     }
     // creating days for current month
     for (var day = 1; day <= moment().add(1, "month").daysInMonth(); day++) {
@@ -146,7 +147,10 @@ $(document).ready(function(){
 
 // Giving current month
     const now = moment().format('MMMM YYYY');
+    const nowDay = moment().format('MMMM DD YYYY');
     $("#month").append(now);
+    $('.modal-title').append(nowDay);
+    
 // creating the days of week for calendar
     for (i = 0; i < daysOfWeek.length; i++) {
         $('#week').append(daysOfWeek[i] + " ") ;

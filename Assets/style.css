@@ -43,7 +43,7 @@ Header
     font-family: 'Cinzel', serif;
     color: rgb(237, 220, 125);
 }
-/* Styling for Past, Present, Future */
+/* Styling for Past, Present, Future on calendar.html */
 
 .past {
     background-color: grey;
@@ -54,9 +54,32 @@ Header
 .future {
     background-color:green;
 }
+/* Modal on calendar.html */
 
-/* Cards on Index.html */
+@media (min-width: 768px) {
+    .modal-xl {
+    width: 90%;
+    max-width:1200px;
+    }
+}
+.modal-content {
+    background-color: rgb(148, 140, 94);
+}
 
+.ml-auto {
+    font-family: 'Cinzel', serif;
+    color: rgb(237, 220, 125);
+    font-size: x-large;
+}
+
+.modal-title {
+    font-family: 'Cinzel', serif;
+    color: rgb(237, 220, 125);
+    font-size: xx-large;
+    text-align: center;
+}
+
+/* Cards on favorites.html */
 #fav-food, #fav-cocktail {
     margin: 50px;
     margin-top: 50px;
@@ -69,6 +92,8 @@ Header
     background-color: rgb(148, 140, 94);
     
 }
+
+/* Cards on Index.html */
 .index-card {
     margin: 50px;
     margin-top: 50px;
@@ -80,6 +105,7 @@ Header
     box-shadow: 5px;
     background-color: rgb(237, 220, 125);
 }
+
 
 .card-img-top {
     height:40%;
@@ -124,14 +150,50 @@ Header
 }
 
 /* For Food Search Recipes Page */
+#search-food {
+    margin: 25px;
+    margin-top: 50px;
+    border: rgb(237, 220, 125) 3px groove;
+    border-radius: 10px;
+    height: 85%;
+    width: 750px !important;
+    background-color: rgb(148, 140, 94);
+    float: left;
+
+}
+
+#search-cocktail {
+    margin: 25px;
+    margin-top: 50px;
+    border: rgb(237, 220, 125) 3px groove;
+    border-radius: 10px;
+    height: 85%;
+    width: 650px !important;
+    background-color: rgb(148, 140, 94);
+    float: right;
+}
+
+
 .form-check {
     margin-left: 25px;
+}
+.input-group{
+    padding: 5px;
+}
+h1 {
+    color:rgb(237, 220, 125) !important; 
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: x-large;
+    
 }
 h2 {
     color:rgb(237, 220, 125) !important; 
     font-family: 'Cinzel', serif;
     font-size: x-large;
     margin-left: 25px;
+    text-align: center;
+    
 }
 h3 {
     color:rgb(237, 220, 125) !important; 
@@ -152,12 +214,12 @@ h3 {
 }
 .recipe-search-card-ingredients-ol {
     color:rgb(237, 220, 125) !important; 
-    font-family: 'Cinzel', serif;
+    font-family: 'Rancho', cursive;
     font-size: large;
 }
 .recipe-search-card-health-ul {
     color:rgb(237, 220, 125) !important; 
-    font-family: 'Cinzel', serif;
+    font-family: 'Rancho', cursive;
     font-size: large;
 }
 .recipe-search-card-health-ul-title {
@@ -167,17 +229,22 @@ h3 {
 }
 .recipe-search-card-servings {
     color:rgb(237, 220, 125) !important; 
-    font-family: 'Cinzel', serif;
+    font-family: 'Rancho', cursive;
     font-size: large;
 }
 .recipe-search-card-button {
     color:rgb(237, 220, 125) !important; 
     font-family: 'Cinzel', serif;
-    font-size: large;
+    font-size: xx-large;
 }
 .recipe-search-card-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     border: rgb(237, 220, 125) 3px groove;
     border-radius: 10px; 
+    margin-bottom: 10px;
 }
 .recipe-search-card-favorites-text {
     color:rgb(237, 220, 125) !important; 
@@ -186,46 +253,51 @@ h3 {
 }
 .recipe-search-card-favorites-img {
     background-color:rgb(237, 220, 125) !important; 
-    font-family: 'Cinzel', serif;
     border: rgb(237, 220, 125) 3px groove;
     border-radius: 10px;
-    font-size: large;
+    margin-top: 10px;
+    margin-bottom: 35px;
 }
 
 /* For Cocktail Recipe Search */
 
 .cocktail-search-card-image {
-    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     border: rgb(237, 220, 125) 3px groove;
     border-radius: 10px; 
+    margin-bottom: 10px;
+    
 }
 .cocktail-search-card-name {
     color:rgb(237, 220, 125) !important; 
     font-family: 'Cinzel', serif;
-    font-size: large;
+    font-size: xx-large;
+    
 }
 .cocktail-search-card-ingredients-ol {
     color:rgb(237, 220, 125) !important; 
-    font-family: 'Cinzel', serif;
+    font-family: 'Rancho', cursive;
     font-size: large;
 }
 .cocktail-search-card-recipe {
     color:rgb(237, 220, 125) !important; 
-    font-family: 'Cinzel', serif;
+    font-family: 'Rancho', cursive;
     font-size: large;
 }
 .cocktail-search-card-favorites-text {
     color:rgb(237, 220, 125) !important; 
-    font-family: 'Cinzel', serif;
+    font-family: 'Rancho', cursive;
     font-size: large;
 }
 .cocktail-search-card-favorites-img {
     background-color:rgb(237, 220, 125) !important; 
-    font-family: 'Cinzel', serif;
     border: rgb(237, 220, 125) 3px groove;
     border-radius: 10px;
-    font-size: large;
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 35px;
 }
 
 /* For Scheduling Buttons on Search Recipe Page */
@@ -234,21 +306,36 @@ h3 {
     background-color:rgb(237, 220, 125) !important; 
     font-family: 'Cinzel', serif;
     color: black;
-    font-size: large;
+    font-size: medium;
+    margin-left: 25px;
+
 }
 .day-button {
     background-color:rgb(237, 220, 125) !important; 
     font-family: 'Cinzel', serif;
     color: black;
-    font-size: large;
+    font-size: medium;
+    margin-left: 25x;
+}
+.schedule {
+    background-color:rgb(237, 220, 125) !important; 
+    font-family: 'Cinzel', serif;
+    color: black;
+    font-size: medium;
+    margin-left: 25px;
 }
 .btn {
     background-color:rgb(237, 220, 125) !important; 
     font-family: 'Cinzel', serif;
     color: black;
-    font-size: large;
+    font-size: medium;
+    
     
 }
 #random-cocktail {
     margin-left: 25px;
+}
+
+.container {
+    width: 100% !important;
 }
